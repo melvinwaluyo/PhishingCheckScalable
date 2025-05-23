@@ -1,0 +1,24 @@
+# kubernetes/02-configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+data:
+  # PostgreSQL Config
+  POSTGRES_USER: "postgres"
+  POSTGRES_DB: "PhishingCheckScalable"
+  POSTGRES_HOST: "postgres-svc" # <-- K8S Service name for Postgres
+  POSTGRES_PORT: "5432"
+
+  # Redis Config
+  REDIS_HOST: "redis-svc" # <-- K8S Service name for Redis
+  REDIS_PORT: "6379"
+  REDIS_DB: "0"
+
+  # ML Service URL
+  ML_SERVICE_URL: "http://mlservice-svc:8001/model_predict" # <-- K8S Service name for ML
+
+
+  # Backend PG Connection String (Uses other ConfigMap/Secret values)
+  # Note: Your app needs to read individual vars OR this one.
+  # We'll configure the backend to use individual vars.

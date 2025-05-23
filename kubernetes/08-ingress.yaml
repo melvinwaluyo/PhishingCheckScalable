@@ -1,0 +1,20 @@
+# kubernetes/08-ingress.yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: phishing-ingress
+  annotations:
+    # Optional: NGINX specific annotations can go here
+    # e.g., nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx # Tells K8S to use the Nginx Ingress Controller
+  rules:
+    - http:
+        paths:
+          - path: /api/predict # Match requests starting with /api/predict
+            pathType: Prefix # Match based on prefix
+            backend:
+              service:
+                name: backend-svc # Route to your backend service
+                port:
+                  number: 8000 # On port 8000

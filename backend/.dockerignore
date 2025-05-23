@@ -1,0 +1,52 @@
+# --- Version Control ---
+.git/
+.gitignore
+
+# --- Python ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+pip-cache/
+.env
+.venv
+env/
+venv/
+
+# --- IDEs / Editors ---
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# --- OS / System ---
+.DS_Store
+Thumbs.db
+
+# --- Testing / Coverage ---
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# --- Build / Dist ---
+build/
+dist/
+*.spec
+
+# --- Docker ---
+# Don't include Docker-related files inside the image
+Dockerfile
+.dockerignore
+docker-compose.yml
+
+# --- Specific to your setup ---
+# If you have local DB/Redis data folders *inside* these dirs, add them.
+# Example: postgres_data/
+# Example: redis_data/
+# (But it's better to keep these outside your build contexts)
+
+# Add any other logs, temporary files, or local configs you don't want.
+*.log
+.env.development # Important: Avoid copying local dev env files

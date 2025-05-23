@@ -1,0 +1,33 @@
+# kubernetes/06-mlservice.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: mlservice-svc # DNS name for ML Service
+spec:
+  ports:
+    - port: 8001 # Port the service listens on
+      targetPort: 8001 # Port the container listens on
+  selector:
+    app: mlservice
+  type: ClusterIP # Only accessible within the cluster
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mlservice-deployment
+spec:
+  replicas: 1 # Start with one replica
+  selector:
+    matchLabels:
+      app: mlservice
+  template:
+    metadata:
+      labels:
+        app: mlservice
+    spec:
+      containers:
+        - name: mlservice
+          image: mlservice:latest # <-- MUST MATCH your locally built image name/tag
+          imagePullPolicy: IfNotPresent # Tells K8S to use local images if available
+          ports:
+            - containerPort: 8001

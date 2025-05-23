@@ -1,0 +1,26 @@
+# kubernetes/09-hpa.yaml
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: backend-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: backend-deployment # <-- The deployment we want to scale
+  minReplicas: 1 # Always keep at least 1 pod
+  maxReplicas: 5 # Scale up to a maximum of 5 pods
+  metrics:
+    - type: Resource # Scale based on resource usage
+      resource:
+        name: cpu # The resource is CPU
+        target:
+          type: Utilization # Scale based on % utilization
+          averageUtilization: 50 # Target 50% CPU utilization
+  # You could also add memory scaling:
+  # - type: Resource
+  #   resource:
+  #     name: memory
+  #     target:
+  #       type: Utilization
+  #       averageUtilization: 70
