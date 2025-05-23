@@ -1,6 +1,6 @@
 # Phishing Check - Scalable Microservices Architecture
 
-This repository provides an overview of the Phishing Check application, designed as a scalable system deployed on Kubernetes. It transitions from an initial monolithic design to a decoupled microservices architecture, enhancing performance, resilience, and maintainability.
+This repository contains the **scalable, microservices-based version** of the Phishing Check application. It's designed for deployment on Kubernetes and addresses the limitations of the original monolithic design by separating concerns, enabling independent scaling, and improving resilience.
 
 ## 1. Architecture Overview
 
